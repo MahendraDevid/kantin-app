@@ -1,0 +1,20 @@
+version: "3.8" # Versi format docker-compose
+
+
+services:
+  # Layanan Backend (API)
+  backend-service:
+    build: ./backend # Docker akan build otomatis dari folder ini
+    ports:
+      - "5000:5000" # Mapping port host ke container
+    container_name: api-server-compose
+
+
+  # Layanan Frontend (UI)
+  frontend-service:
+    build: ./frontend # Docker akan build otomatis dari folder ini
+    ports:
+      - "8081:80"
+    container_name: ui-server-compose
+    depends_on:
+      - backend-service
