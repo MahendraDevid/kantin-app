@@ -1,13 +1,14 @@
+# kantin-ingress.yaml — VERSI TUGAS 2 (tanpa host)
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kantin-ingress
-  # annotations:
-  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
+  ingressClassName: nginx   # ← Penting! Sambungkan ke NGINX Ingress Controller
   rules:
-  - host: kantin.local
-    http:
+  - http:                   # ← Tidak ada "host:" → pakai IP langsung
       paths:
       - path: /api
         pathType: Prefix

@@ -2,19 +2,23 @@
 <html>
 <head><title>E-Kantin</title></head>
 <body>
+    <!-- Identitas mahasiswa (dari API yang inject dari YAML) -->
+    <div style="background:#f0f0f0; padding:10px; margin-bottom:20px; border-radius:5px;">
+        <strong>Identitas:</strong>
+        <span id="nama-mahasiswa">Memuat...</span> |
+        NIM: <span id="nim-mahasiswa">Memuat...</span>
+    </div>
+
     <h1 id="kantin-name">Memuat...</h1>
     <ul id="menu-list"></ul>
-
 
     <hr>
     <h3>Tambah Menu Baru:</h3>
     <input type="text" id="menu-input" placeholder="Nama makanan...">
     <button onclick="tambahMenu()">Tambah</button>
 
-
     <script>
-        const API_URL = '/api';
-
+        const API_URL = '/api';  // ← Relative path, sesuai soal!
 
         function loadData() {
             fetch(`${API_URL}/info`)
@@ -31,6 +35,15 @@
                 });
         }
 
+        // Ambil dan tampilkan identitas dari backend
+        function loadIdentitas() {
+            fetch(`${API_URL}/identitas`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('nama-mahasiswa').innerText = data.nama;
+                    document.getElementById('nim-mahasiswa').innerText = data.nim;
+                });
+        }
 
         function tambahMenu() {
             const input = document.getElementById('menu-input');
@@ -46,8 +59,8 @@
             });
         }
 
-
         loadData();
+        loadIdentitas();  // ← Panggil saat halaman load
     </script>
 </body>
 </html>

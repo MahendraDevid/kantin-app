@@ -1,9 +1,10 @@
+# kantin-k8s.yaml — GANTI SESUAI USERNAME DOCKER HUB KAMU
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-kantin
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -14,10 +15,15 @@ spec:
     spec:
       containers:
       - name: backend-api
-        image: madeu30/praktikum1-backend-service:latest
+        image: DOCKER_HUB_USERNAME/kantin-backend:latest  # ← Ganti username
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+        env:                                    # ← INI yang dimaksud inject via YAML
+        - name: NAMA_MAHASISWA
+          value: "Nama Lengkap Kamu"            # ← Isi nama kamu
+        - name: NIM_MAHASISWA
+          value: "123456789"                    # ← Isi NIM kamu
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +36,7 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-  type: ClusterIP
+  type: ClusterIP   # ← Sesuai syarat soal (bukan LoadBalancer)
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -48,7 +54,7 @@ spec:
     spec:
       containers:
       - name: frontend-ui
-        image: madeu30/praktikum1-frontend-service:latest
+        image: DOCKER_HUB_USERNAME/kantin-frontend:latest  # ← Ganti username
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -64,4 +70,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: ClusterIP
+  type: ClusterIP   # ← Sesuai syarat soal
