@@ -4,9 +4,9 @@ pipeline {
 
     environment {
         // Ganti dengan username Docker Hub kamu
-        DOCKER_USER = "USERNAME_DOCKER_HUB_KAMU"
+        DOCKER_USER = "madeu30"
         // Ganti dengan URL repo GitHub kamu
-        GIT_REPO_URL = "https://github.com/USERNAME_GITHUB/kantin-app.git"
+        GIT_REPO_URL = "https://github.com/MahendraDevid/kantin-app.git"
     }
 
     stages {
