@@ -21,9 +21,9 @@ spec:
         - containerPort: 5000
         env:                                    # ← INI yang dimaksud inject via YAML
         - name: NAMA_MAHASISWA
-          value: "Nama Lengkap Kamu"            # ← Isi nama kamu
+          value: "Mahendra Devid Putra Anwar"            # ← Isi nama kamu
         - name: NIM_MAHASISWA
-          value: "123456789"                    # ← Isi NIM kamu
+          value: "2407792"                    # ← Isi NIM kamu
 ---
 apiVersion: v1
 kind: Service
