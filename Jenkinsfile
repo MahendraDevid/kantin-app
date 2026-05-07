@@ -26,14 +26,13 @@ pipeline {
                     passwordVariable: 'PASS',
                     usernameVariable: 'USER'
                 )]) {
-                    // Gunakan kutip TUNGGAL untuk variabel sensitif → aman dari interpolation
                     sh 'echo $PASS | docker login -u $USER --password-stdin'
 
-                    // Gunakan kutip GANDA hanya untuk variabel non-sensitif seperti nama image
-                    sh "docker build -t $USER/kantin-backend:latest ./backend"
-                    sh "docker build -t $USER/kantin-frontend:latest ./frontend"
-                    sh "docker push $USER/kantin-backend:latest"
-                    sh "docker push $USER/kantin-frontend:latest"
+                    // Nama image harus sama dengan yang di kantin-k8s.yaml
+                    sh "docker build -t $USER/praktikum1-backend-service:latest ./backend"
+                    sh "docker build -t $USER/praktikum1-frontend-service:latest ./frontend"
+                    sh "docker push $USER/praktikum1-backend-service:latest"
+                    sh "docker push $USER/praktikum1-frontend-service:latest"
                 }
             }
         }
