@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: backend-api
-        image: DOCKER_HUB_USERNAME/kantin-backend:latest  # ← Ganti username
+        image: madeu30/kantin-backend:latest  # ← Ganti username
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: frontend-ui
-        image: DOCKER_HUB_USERNAME/kantin-frontend:latest  # ← Ganti username
+        image: madeu30/kantin-frontend:latest  # ← Ganti username
         imagePullPolicy: Always
         ports:
         - containerPort: 80
